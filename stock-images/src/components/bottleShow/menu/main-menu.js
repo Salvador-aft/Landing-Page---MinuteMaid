@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from './logo.png';
+import './main-menu.css';
 
 const StyledComponent = styled.div`
   font-family: 'Bebas Neue', sans-serif;
@@ -39,10 +40,10 @@ function Header() {
       <Container>
         <Navbar.Brand as={Link} to="/">
           <StyledComponent>
-            <img src={logo} alt="Logo" width="250" height="auto" />
+            <img src={logo} alt="Logo" className="logo-image" />
           </StyledComponent>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="custom-toggler" />
         <Navbar.Collapse id="basic-navbar-nav">
           <StyledNav className="mx-auto">
             <StyledNavLink as={Link} to="/products">

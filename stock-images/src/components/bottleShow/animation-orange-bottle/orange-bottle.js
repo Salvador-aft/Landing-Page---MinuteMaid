@@ -9,22 +9,22 @@ const moveLeft = keyframes`
     left: 50%;
   }
   to {
-    left: -20%;
+    left: -40%;
   }
 `;
 
 const moveRight = keyframes`
   from {
-    left: -20%;
+    left: -40%;
   }
   to {
-    left: 120%;
+    left: 140%;
   }
 `;
 
 const slideBack = keyframes`
   from {
-    left: 120%;
+    left: 140%;
   }
   to {
     left: 50%;

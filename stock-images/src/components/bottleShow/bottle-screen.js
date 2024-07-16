@@ -24,10 +24,6 @@ const BottleScreen = () => {
       <OrangeBottle />
       <AppleBottle />
       <RaspberryBottle />
-      <LeafOne/>
-      <LeafTwo/>
-      <LeafThree/>
-      <LeafFour/>
     </>
   );
 };

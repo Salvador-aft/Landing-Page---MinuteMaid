@@ -1,0 +1,84 @@
+.logo-image {
+    max-width: 150px;
+    height: auto;
+    transition: margin-left 0.3s ease;
+  }
+
+  @media (max-width: 1000px) {
+    .logo-image {
+        max-width: 100px;
+    }
+  }
+  
+  @media (max-width: 1000px) {
+    .logo-image {
+      margin-left: 0px;
+    }
+  
+    .navbar-toggler.custom-toggler {
+      margin-right: 10px;
+    }
+  }
+  
+  .navbar {
+    width: 100%;
+  }
+  
+  .navbar-toggler.custom-toggler {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    border-radius: 0;
+  }
+  
+  .navbar-nav {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  
+  .navbar-nav .nav-item {
+    margin-right: 20px;
+  }
+  
+  .navbar-nav .nav-item:last-child {
+    margin-right: 150px;
+  }
+  
+  @media (min-width: 1700px) {
+    .navbar-nav .nav-item:last-child {
+      margin: 0;
+    }
+  }
+  
+  @media (max-width: 1280px) {
+    .navbar-nav .nav-item:last-child {
+      margin-right: 50px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-nav .nav-item {
+      margin-right: 10px;
+    }
+  
+    .navbar-nav .nav-item:last-child {
+      margin-right: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .navbar-nav .nav-item {
+      margin-right: 5px;
+    }
+  
+    .navbar-nav .nav-item:last-child {
+      margin-right: 5px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .navbar-nav .nav-item:last-child {
+      margin-right: 150px;
+    }
+  }  

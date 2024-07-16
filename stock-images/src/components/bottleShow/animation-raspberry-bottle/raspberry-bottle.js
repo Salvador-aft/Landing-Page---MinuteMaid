@@ -9,22 +9,22 @@ const moveLeft = keyframes`
     left: 50%;
   }
   to {
-    left: -20%;
+    left: -40%;
   }
 `;
 
 const moveRight = keyframes`
   from {
-    left: -20%;
+    left: -40%;
   }
   to {
-    left: 120%;
+    left: 140%;
   }
 `;
 
 const slideBack = keyframes`
   from {
-    left: 120%;
+    left: 140%;
   }
   to {
     left: 50%;
@@ -40,7 +40,7 @@ const RaspberryBottle = () => {
         if (prev === 'state1') return 'state2';
         if (prev === 'state2') return 'state3';
         if (prev === 'state3') return 'state1';
-        return 'state1'; // Fallback value
+        return 'state1';
       });
     }, 10000);
 
@@ -63,7 +63,7 @@ const OrangeContainer = styled.div`
     if (props.currentState === 'state1') return '50%';
     if (props.currentState === 'state2') return '-20%';
     if (props.currentState === 'state3') return '120%';
-    return '50%'; // Fallback value
+    return '50%';
   }};
   transform: translate(-50%, -50%);
   transition: ${(props) =>

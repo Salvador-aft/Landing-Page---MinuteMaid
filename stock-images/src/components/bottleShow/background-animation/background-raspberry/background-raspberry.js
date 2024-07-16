@@ -63,7 +63,7 @@ const StyledBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: -1;
-  background-color: #c6013b; // Cambiado el color a #c6013b
+  background-color: #c6013b;
   display: flex;
   align-items: center;
   justify-content: center;

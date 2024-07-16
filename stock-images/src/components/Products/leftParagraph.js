@@ -10,6 +10,8 @@ const StyledBottleContainer = styled.div`
   display: flex;
   align-items: center;
   background-color: #f8cb52;
+  width: 100vw;
+  margin: 0;
 `;
 
 const StyledButton = styled.button`
@@ -30,6 +32,7 @@ const StyledContent = styled.div`
   flex: 1;
   text-align: left;
   margin-left: 20px;
+  padding: 20px 20px 20px 480px;
 `;
 
 const StyledBottle = styled(motion.img)`
@@ -45,7 +48,7 @@ function ProductSection({ title, description, imageUrl }) {
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
-    const newRightValue = 30 - scrollY * 0.1;
+    const newRightValue = 30 - scrollY * 0.2;
     controls.start({ right: `${newRightValue}%` });
   };
 
@@ -57,8 +60,8 @@ function ProductSection({ title, description, imageUrl }) {
   }, [controls]);
 
   return (
-    <StyledBottleContainer className='mt-5 ml-5 d-flex justify-content-center'>
-      <Container>
+    <StyledBottleContainer className='d-flex justify-content-center'>
+      <Container fluid>
         <StyledBottle
           src={imageUrl}
           alt="Orange Bottle"

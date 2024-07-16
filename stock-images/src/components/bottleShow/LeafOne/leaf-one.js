@@ -67,10 +67,10 @@ const LeafOne = () => {
 
 const StyledLeaf = styled.img`
   position: absolute;
-  top: 0,
-  left: 80,
-  width: 20%;
-  height: 20%;
+  top: 10vh;
+  left: 8vw;
+  width: 100px;
+  height: 100px;
   animation: ${(props) =>
     props.animationState
       ? css`

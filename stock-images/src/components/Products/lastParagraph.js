@@ -9,7 +9,7 @@ const StyledBottleContainer = styled.div`
   height: 600px;
   display: flex;
   align-items: center;
-  background-color: #237d50;
+  background-color: #c6013b;
   width: 100vw;
   margin: 0;
 `;
@@ -30,40 +30,31 @@ const StyledButton = styled.button`
 
 const StyledContent = styled.div`
   flex: 1;
-  text-align: right;
+  text-align: left;
   margin-left: 20px;
-  padding: 20px 530px 20px 20px;
+  padding: 20px 20px 20px 480px;
 `;
 
 const StyledBottle = styled(motion.img)`
   max-width: 20%;
   position: absolute;
-  left: -30%;
+  right: -20%;
   transform: translateY(-10%);
   z-index: 1;
 `;
 
-function AltProductSection({ title, description, imageUrl }) {
+function LastProductSection({ title, description, imageUrl }) {
   const controls = useAnimation();
-  const minLeftValue = -30;
-  const maxLeftValue = 30;
+  const triggerPoint = 700;
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
-    const startScroll = 50;
-    const endScroll = 200;
-    const reverseScroll = 700;
 
-    if (scrollY >= startScroll && scrollY <= endScroll) {
-      const newLeftValue = Math.min(maxLeftValue, Math.max(minLeftValue, minLeftValue + (scrollY - startScroll) * 0.1));
-      controls.start({ left: `${newLeftValue}%` });
-    } else if (scrollY < startScroll) {
-      controls.start({ left: `${minLeftValue}%` });
-    } else if (scrollY > endScroll && scrollY <= reverseScroll) {
-      controls.start({ left: `${maxLeftValue}%` });
-    } else if (scrollY > reverseScroll) {
-      const newLeftValue = Math.max(minLeftValue, maxLeftValue - (scrollY - reverseScroll) * 0.3);
-      controls.start({ left: `${newLeftValue}%` });
+    if (scrollY > triggerPoint) {
+      const newRightValue = (scrollY - triggerPoint) * 0.2;
+      controls.start({ right: `${newRightValue > 30 ? 30 : newRightValue}%` });
+    } else {
+      controls.start({ right: '-20%' });
     }
   };
 
@@ -79,9 +70,9 @@ function AltProductSection({ title, description, imageUrl }) {
       <Container fluid>
         <StyledBottle
           src={imageUrl}
-          alt="Apple Bottle"
+          alt="Raspberry Bottle"
           animate={controls}
-          initial={{ left: `${minLeftValue}%` }}
+          initial={{ right: '-20%' }}
         />
         <StyledContent>
           <h2>{title}</h2>
@@ -95,4 +86,4 @@ function AltProductSection({ title, description, imageUrl }) {
   );
 }
 
-export default AltProductSection;
+export default LastProductSection;
