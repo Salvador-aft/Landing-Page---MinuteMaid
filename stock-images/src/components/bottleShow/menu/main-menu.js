@@ -53,7 +53,7 @@ function Header() {
               <h3>ABOUT US</h3>
             </StyledNavLink>
             <StyledNavLink as={Link} to="/faqs">
-              <h3>FAQs</h3>
+              <h3>SHOP</h3>
             </StyledNavLink>
           </StyledNav>
         </Navbar.Collapse>

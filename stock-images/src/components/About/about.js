@@ -1,7 +1,6 @@
 import React from 'react';
-import { Container, ListGroup } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styled from 'styled-components';
 import HorizontalMenu from './components/horizontalMenu';
 
 function About() {
@@ -11,10 +10,10 @@ function About() {
         <div>
           <h2>About Us</h2>
         </div>
-        </Container>
-  <HorizontalMenu />
+      </Container>
+      <HorizontalMenu/>
     </div>
   );
 }
 
-export default About
+export default About;

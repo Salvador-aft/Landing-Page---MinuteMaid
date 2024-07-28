@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import BottleScreen from './components/bottleShow/bottle-screen';
 import Products from './components/Products/products';
 import About from './components/About/about';
-import FAQs from './components/FAQs/faqs';
+import Shop from './components/Shop/shop';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <Switch>
           <Route path="/products" component={Products} />
           <Route path="/about" component={About} />
-          <Route path="/faqs" component={FAQs} />
+          <Route path="/faqs" component={Shop} />
           <Route path="/" component={BottleScreen} />
         </Switch>
       </div>

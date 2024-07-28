@@ -12,6 +12,13 @@ const StyledBottleContainer = styled.div`
   background-color: #c6013b;
   width: 100vw;
   margin: 0;
+
+  @media (max-width: 1000px) {
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -26,6 +33,11 @@ const StyledButton = styled.button`
   &:hover {
     background-color: #42261a;
   }
+
+  @media (max-width: 1000px) {
+    font-size: 1em;
+    padding: 10px 20px;
+  }
 `;
 
 const StyledContent = styled.div`
@@ -33,28 +45,68 @@ const StyledContent = styled.div`
   text-align: left;
   margin-left: 20px;
   padding: 20px 20px 20px 480px;
+
+  @media (max-width: 1000px) {
+    text-align: center;
+    margin-left: 0;
+    padding: 0;
+  }
 `;
 
 const StyledBottle = styled(motion.img)`
-  max-width: 20%;
+  max-width: auto;
+  height: auto;
   position: absolute;
   right: -20%;
   transform: translateY(-10%);
   z-index: 1;
+
+  @media (max-width: 1000px) {
+    width: 150px;
+    height: 275px;
+    position: relative;
+    right: -50%;
+    transform: translateX(50%) translateY(0);
+  }
+`;
+
+const Title = styled.h2`
+  font-size: 2.5em;
+
+  @media (max-width: 1000px) {
+    font-size: 1.5em;
+  }
+`;
+
+const Description = styled.h5`
+  font-size: 1.25em;
+
+  @media (max-width: 1000px) {
+    font-size: 1em;
+  }
 `;
 
 function LastProductSection({ title, description, imageUrl }) {
   const controls = useAnimation();
   const triggerPoint = 700;
+  const triggerPointMobile = 700;
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
 
-    if (scrollY > triggerPoint) {
-      const newRightValue = (scrollY - triggerPoint) * 0.2;
-      controls.start({ right: `${newRightValue > 30 ? 30 : newRightValue}%` });
+    if (window.innerWidth <= 1000) {
+      if (scrollY > triggerPointMobile) {
+        controls.start({ right: '-25%' });
+      } else {
+        controls.start({ right: '-100%' });
+      }
     } else {
-      controls.start({ right: '-20%' });
+      if (scrollY > triggerPoint) {
+        const newRightValue = (scrollY - triggerPoint) * 0.2;
+        controls.start({ right: `${newRightValue > 30 ? 30 : newRightValue}%` });
+      } else {
+        controls.start({ right: '-50%' });
+      }
     }
   };
 
@@ -72,11 +124,11 @@ function LastProductSection({ title, description, imageUrl }) {
           src={imageUrl}
           alt="Raspberry Bottle"
           animate={controls}
-          initial={{ right: '-20%' }}
+          initial={{ right: window.innerWidth <= 1000 ? '-50%' : '-20%' }}
         />
         <StyledContent>
-          <h2>{title}</h2>
-          <h5 className='mt-5'>{description}</h5>
+          <Title>{title}</Title>
+          <Description className='mt-5'>{description}</Description>
           <div className='mt-5 ml-2'>
             <StyledButton>Shop Now</StyledButton>
           </div>
