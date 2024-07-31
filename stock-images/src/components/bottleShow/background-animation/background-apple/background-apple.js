@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 
+// Define keyframe animations for different states
+// Entry animation: moves the background to the left
 const moveLeft = keyframes`
   from {
     left: 0%;
@@ -9,7 +11,7 @@ const moveLeft = keyframes`
     left: -100%;
   }
 `;
-
+// Entry animation: moves the background to the left
 const moveRight = keyframes`
   from {
     left: -100%;
@@ -18,7 +20,7 @@ const moveRight = keyframes`
     left: 200%;
   }
 `;
-
+// Entry animation: moves the background to the left
 const slideBack = keyframes`
   from {
     left: 200%;
@@ -28,9 +30,12 @@ const slideBack = keyframes`
   }
 `;
 
+// Main component for the apple background animation
 const BackgroundApple = () => {
+  // useState hook to manage the current state of the background
   const [currentState, setCurrentState] = useState('state3');
 
+  // Use effect to set up an interval that cycles through the states
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentState((prev) => {
@@ -39,8 +44,9 @@ const BackgroundApple = () => {
         if (prev === 'state3') return 'state1';
         return 'state1'; // Fallback value
       });
-    }, 10000);
+    }, 10000); // Change state every 10 seconds
 
+    // Clean up interval on component unmount
     return () => clearInterval(interval);
   }, []);
 
@@ -51,6 +57,7 @@ const BackgroundApple = () => {
   );
 };
 
+// Styled component for the background with dynamic positioning and animation based on state
 const StyledBackground = styled.div`
   position: fixed;
   top: 0;
@@ -84,6 +91,7 @@ const StyledBackground = styled.div`
       : 'none'};
 `;
 
+// Styled component for the text displayed in the background
 const StyledText = styled.h1`
   font-family: 'Passion One', sans-serif;
   font-size: 25vw;

@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
-import Container from 'react-bootstrap/Container';
-import { motion, useAnimation } from 'framer-motion';
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import ProductSection from './leftParagraph';
 import AltProductSection from './rightParagraph';
 import LastProductSection from './lastParagraph';
@@ -11,6 +9,7 @@ import RaspberryBottleImage from '../bottleShow/animation-raspberry-bottle/image
 import LogoImage from '../bottleShow/menu/logo.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Define global styles for the body element
 const globalStyles = {
   body: {
     padding: 0,
@@ -20,12 +19,16 @@ const globalStyles = {
   }
 };
 
+// Apply the global styles to the document body
 function applyGlobalStyles() {
+  // Iterate over each element and its associated styles
   for (const [element, styles] of Object.entries(globalStyles)) {
+    // Apply each style to the corresponding element in the document
     Object.assign(document.querySelector(element).style, styles);
   }
 }
 
+// Styled components for layout and styles
 const StyledProductContainer = styled.div`
   width: 100vw;
   overflow-x: hidden;
@@ -41,6 +44,7 @@ const ProductSectionContainer = styled.div`
 
 const StyledLogoContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 400px;
@@ -50,12 +54,28 @@ const StyledLogoContainer = styled.div`
 
 const StyledLogo = styled.img`
   max-width: 100px;
+  cursor: pointer;
+`;
+
+const BackToTopText = styled.h4`
+  margin-top: 20px;
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+  font-family: sans-serif;
+  max-width: 150px;
 `;
 
 function Products() {
+  // useEffect to apply global styles when the component mounts
   useEffect(() => {
     applyGlobalStyles();
   }, []);
+
+  // Function to scroll to the top of the page smoothly
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <StyledProductContainer>
@@ -102,7 +122,10 @@ function Products() {
         />
       </ProductSectionContainer>
       <StyledLogoContainer>
-        <StyledLogo src={LogoImage} alt="Logo" />
+        <a href="/">
+          <StyledLogo src={LogoImage} alt="Logo" />
+        </a>
+        <BackToTopText onClick={scrollToTop}>Back to top</BackToTopText>
       </StyledLogoContainer>
     </StyledProductContainer>
   );

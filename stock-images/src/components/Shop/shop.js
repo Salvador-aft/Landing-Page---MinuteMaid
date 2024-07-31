@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faClock, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import styled from '@emotion/styled';
 
+// Data for the stores
 const stores = [
   {
     name: "New York",
@@ -31,6 +32,7 @@ const stores = [
   }
 ];
 
+// Styled-components for custom styles
 const StoreContainer = styled(Grid)`
   margin-bottom: 2rem;
 `;

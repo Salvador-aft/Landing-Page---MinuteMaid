@@ -13,8 +13,7 @@ const StyledComponent = styled.div`
   margin-top: 5px;
 `;
 
-const StyledNavbar = styled(Navbar)`
-`;
+const StyledNavbar = styled(Navbar)``;
 
 const StyledNav = styled(Nav)`
   margin-left: 5px;
@@ -25,12 +24,23 @@ const StyledNavLink = styled(Nav.Link)`
   text-decoration: none !important;
   color: inherit !important;
 
-  &:hover,
-  &:active,
-  &:visited {
-    color: inherit !important;
-    transform: scale(1.2);
-    transition: transform 0.3s ease-in-out;
+  @media (min-width: 1001px) {
+    &:hover,
+    &:active,
+    &:visited {
+      color: inherit !important;
+      transform: scale(1.2);
+      transition: transform 0.3s ease-in-out;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    &:hover,
+    &:active,
+    &:visited {
+      text-decoration: underline !important;
+      text-decoration-color: #42261a !important;
+    }
   }
 `;
 

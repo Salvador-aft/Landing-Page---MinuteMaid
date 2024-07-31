@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import styled, { css } from 'styled-components';
 import { motion, useAnimation } from 'framer-motion';
 
+// Styled components for layout and styles
 const StyledBottleContainer = styled.div`
   overflow: hidden;
   position: relative;
@@ -98,47 +99,52 @@ const Description = styled.h5`
 `;
 
 function AltProductSection({ title, description, imageUrl }) {
+  // useState hooks to manage dynamic padding
   const [dynamicPadding, setDynamicPadding] = React.useState(530);
-  const controls = useAnimation();
-  const minLeftValue = -30;
+  const controls = useAnimation(); // useAnimation hook for controlling the animation
+  const minLeftValue = -30; // Minimum left position for the bottle
 
+  // Function to update the maximum left value based on window width
   const updateMaxLeftValue = () => {
     const windowWidth = window.innerWidth;
     const maxInitialValue = windowWidth <= 1000 ? 50 : 30;
-    if (windowWidth <= 1000) {
-      return maxInitialValue
-    } else {
-      return windowWidth > 1920 ? maxInitialValue : maxInitialValue * Math.pow(windowWidth / 1920, 2);
-    }
+    // Adjust the max left value using a power function for a smoother scaling effect on larger screens
+    return windowWidth > 1920 ? maxInitialValue : maxInitialValue * Math.pow(windowWidth / 1920, 2);
   };
 
+  // Function to update dynamic padding based on window width
   const updatePadding = () => {
     const windowWidth = window.innerWidth;
+    // Calculate new padding using a power function to create a smooth scaling effect
     const newPadding = windowWidth > 1920 ? 530 : 530 * Math.pow(windowWidth / 1920, 4);
     setDynamicPadding(newPadding);
   };
 
+  // Function to handle scroll events and update animation based on scroll position
   const handleScroll = () => {
     const scrollY = window.scrollY;
-    const startScroll = 50;
-    const endScroll = 200;
-    const reverseScroll = 700;
+    const startScroll = 50; // Scroll position to start the animation
+    const endScroll = 200; // Scroll position to end the initial animation
+    const reverseScroll = 700; // Scroll position to start the reverse animation
 
     const newMaxLeftValue = updateMaxLeftValue();
 
     if (scrollY >= startScroll && scrollY <= endScroll) {
+      // Calculate new left value based on scroll distance within the initial range
       const newLeftValue = Math.min(newMaxLeftValue, Math.max(minLeftValue, minLeftValue + (scrollY - startScroll) * 0.1));
       controls.start({ left: `${newLeftValue}%` });
     } else if (scrollY < startScroll) {
-      controls.start({ left: `${minLeftValue}%` });
+      controls.start({ left: `${minLeftValue}%` }); // Reset to initial position if scroll is before startScroll
     } else if (scrollY > endScroll && scrollY <= reverseScroll) {
-      controls.start({ left: `${newMaxLeftValue}%` });
+      controls.start({ left: `${newMaxLeftValue}%` }); // Set to max left value if within the endScroll and reverseScroll range
     } else if (scrollY > reverseScroll) {
+      // Calculate new left value for the reverse animation
       const newLeftValue = Math.max(minLeftValue, newMaxLeftValue - (scrollY - reverseScroll) * 0.3);
       controls.start({ left: `${newLeftValue}%` });
     }
   };
 
+  // useEffect hook to set up event listeners for scroll and resize
   React.useEffect(() => {
     const handleResize = () => {
       updatePadding();
@@ -147,9 +153,10 @@ function AltProductSection({ title, description, imageUrl }) {
 
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleResize);
-    
-    updatePadding();
-    
+
+    updatePadding(); // Initial call to set padding
+
+    // Cleanup function to remove event listeners when component unmounts
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
@@ -163,7 +170,7 @@ function AltProductSection({ title, description, imageUrl }) {
           src={imageUrl}
           alt="Bottle"
           animate={controls}
-          initial={{ left: `${minLeftValue}%` }}
+          initial={{ left: `${minLeftValue}%` }} // Initial animation state
         />
         <StyledContent dynamicPadding={dynamicPadding}>
           <Title>{title}</Title>
